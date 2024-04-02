@@ -84,12 +84,17 @@ func (d *dataSourceIntegration) Schema(ctx context.Context, req datasource.Schem
 			"integration_uri":                           schema.StringAttribute{Computed: true},
 			"passthrough_behavior":                      schema.StringAttribute{Computed: true},
 			"payload_format_version":                    schema.StringAttribute{Computed: true},
-			"request_parameters":                        schema.StringAttribute{Computed: true},
-			"request_templates":                         schema.StringAttribute{Computed: true},
-			"response_parameters":                       schema.StringAttribute{Computed: true},
-			"template_selection_expression":             schema.StringAttribute{Computed: true},
-			"timeout_milliseconds":                      schema.StringAttribute{Computed: true},
-			"tls_config":                                schema.StringAttribute{Computed: true},
+			// "request_parameters":                        schema.StringAttribute{Computed: true},
+			// "request_templates":                         schema.StringAttribute{Computed: true},
+			// "response_parameters":                       schema.StringAttribute{Computed: true},
+			"template_selection_expression": schema.StringAttribute{Computed: true},
+			// "timeout_milliseconds":                      schema.StringAttribute{Computed: true},
+			// "tls_config": schema.ObjectAttribute{
+			// 	AttributeTypes: map[string]attr.Type{
+			// 		"server_name_to_verify": types.StringType,
+			// 	},
+			// 	Computed: true,
+			// },
 		},
 	}
 }
@@ -152,12 +157,12 @@ func (d *dataSourceIntegration) Read(ctx context.Context, req datasource.ReadReq
 	data.IntegrationUri = flex.StringToFramework(ctx, out.IntegrationUri)
 	data.PassthroughBehavior = flex.StringToFramework(ctx, out.PassthroughBehavior)
 	data.PayloadFormatVersion = flex.StringToFramework(ctx, out.PayloadFormatVersion)
-	data.RequestParameters = flex.FlattenFrameworkStringMap(ctx, out.RequestParameters)
-	data.RequestTemplates = flex.FlattenFrameworkStringMap(ctx, out.RequestTemplates)
-	data.ResponseParameters = flex.FlattenFrameworkStringMap(ctx, out.ResponseParameters)
+	// data.RequestParameters = flex.FlattenFrameworkStringMap(ctx, out.RequestParameters)
+	// data.RequestTemplates = flex.FlattenFrameworkStringMap(ctx, out.RequestTemplates)
+	// data.ResponseParameters = flex.FlattenFrameworkStringMap(ctx, out.ResponseParameters)
 	data.TemplateSelectionExpression = flex.StringToFramework(ctx, out.TemplateSelectionExpression)
-	data.TimeoutMilliseconds = flex.StringToFramework(ctx, out.TimeoutMilliseconds)
-	data.TlsConfig = flex.StringToFramework(ctx, out.TlsConfig)
+	// data.TimeoutMilliseconds = flex.StringToFramework(ctx, out.TimeoutMilliseconds)
+	// data.TlsConfig = flex.StringToFramework(ctx, out.TlsConfig)
 
 	// TIP: -- 5. Set the tags
 
@@ -188,10 +193,10 @@ type dataSourceIntegrationData struct {
 	IntegrationUri                         types.String `tfsdk:"integration_uri"`
 	PassthroughBehavior                    types.String `tfsdk:"passthrough_behavior"`
 	PayloadFormatVersion                   types.String `tfsdk:"payload_format_version"`
-	RequestParameters                      types.String `tfsdk:"request_parameters"`
-	RequestTemplates                       types.String `tfsdk:"request_templates"`
-	ResponseParameters                     types.String `tfsdk:"response_parameters"`
-	TemplateSelectionExpression            types.String `tfsdk:"template_selection_expression"`
-	TimeoutMilliseconds                    types.String `tfsdk:"timeout_milliseconds"`
-	TlsConfig                              types.Map    `tfsdk:"tls_config"`
+	// RequestParameters                      types.String `tfsdk:"request_parameters"`
+	// RequestTemplates                       types.String `tfsdk:"request_templates"`
+	// ResponseParameters                     types.String `tfsdk:"response_parameters"`
+	TemplateSelectionExpression types.String `tfsdk:"template_selection_expression"`
+	// TimeoutMilliseconds                    types.String `tfsdk:"timeout_milliseconds"`
+	// TlsConfig                              types.Map    `tfsdk:"tls_config"`
 }
